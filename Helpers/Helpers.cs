@@ -1,13 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Windows;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using QuoteApi.Models;
 
 namespace QuoteApi.Helpers
@@ -15,20 +7,40 @@ namespace QuoteApi.Helpers
     
     public class FormulaHelper
     {
+        private const int HazardFactor = 4;
         public PremiumItem Calculate (QuoteItem item)
         {
             var BusinessFactor = PopulateBusinessFactor();
             var StateFactor = PopulateStateFactor();
+            double businessFactor;
+            double stateFactor;
 
-            double stateFactor = StateFactor[item.State];
-            double businessFactor = BusinessFactor[item.Business];
+            if (!StateFactor.ContainsKey((item.State).ToUpper()))
+            {
+                throw new ArgumentException(
+                    $"We do not have any data for {item.State}. Please ENTER: 'OH', 'TX' or 'FL'");
+            }
+            else
+            {
+                stateFactor = StateFactor[(item.State).ToUpper()];
+            }
 
-            double basePremium = CalculateBasePremium(item);
-            double hazardFactor = CalculateHazardFactor(item);
+            if (!BusinessFactor.ContainsKey((item.Business).ToLower()))
+            {
+                throw new ArgumentException(
+                    $"We do not have any data for {item.Business}. Please ENTER: 'Architect', 'Plumber' or 'Programmer'");
+            }
+            else
+            {
+                businessFactor = BusinessFactor[(item.Business).ToLower()];
+            }
+
+            var basePremium = CalculateBasePremium(item);
+            var hazardFactor = HazardFactor;
 
             var premium = new PremiumItem
             {
-                Premium = (stateFactor*businessFactor*basePremium*hazardFactor)
+                Premium = Math.Round((stateFactor*businessFactor*basePremium*hazardFactor), 2, MidpointRounding.AwayFromZero )
             };
 
             return premium;
@@ -39,12 +51,6 @@ namespace QuoteApi.Helpers
             double rev  = item.Revenue;
             double basePremium = Math.Ceiling((rev / 1000));
             return basePremium;
-        }
-
-        public double CalculateHazardFactor (QuoteItem item)
-        {
-
-            return 4; //errrrrrrrrrrrrrrrrrr i didnt see any formula to calculate this but im assuming there is one? :grimancing:
         }
 
         public Dictionary<string, double>  PopulateStateFactor()
@@ -59,9 +65,9 @@ namespace QuoteApi.Helpers
         public Dictionary<string, double> PopulateBusinessFactor()
         {
           Dictionary<string, double> BusinessFactor =  new Dictionary<string, double>();
-          BusinessFactor.Add("Architect", 1); 
-          BusinessFactor.Add("Plumber", 0.5);
-          BusinessFactor.Add("Programmer", 1.25);
+          BusinessFactor.Add("architect", 1); 
+          BusinessFactor.Add("plumber", 0.5);
+          BusinessFactor.Add("programmer", 1.25);
 
           return BusinessFactor;
         }

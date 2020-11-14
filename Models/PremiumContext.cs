@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using QuoteApi.Models;
 
 namespace QuoteApi.Models
 {
@@ -11,5 +10,7 @@ namespace QuoteApi.Models
         }
 
         public DbSet<PremiumItem> PremiumItems { get; set; }
+
+        public DbSet<QuoteItem> QuoteItems { get; set; }
     }
 }
