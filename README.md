@@ -9,8 +9,9 @@
 }
 ```
 <br /> It then uses a algorithm to calculate a premium based on the values of the payload.
-```
+
 And outputs a response JSON payload of:
+```
 {
 "premium": [int/double]
 }
@@ -26,7 +27,8 @@ And outputs a response JSON payload of:
 4. From there use a tool like Postman to send a POST JSON payload in the format above to https://localhost:5001/api/premium
 5. Response should be a JSON payload Premium in the format above.
 If you want to see all the premium JSON payloads POSTED for the API's current session you can send a GET command to 
-https://localhost:5001/api/premium or navigate to that URL in the browser of your choice
+https://localhost:5001/api/premium or navigate to that URL in the browser of your choice.
+<br />
 If you want to see all the quote JSON payloads sent for the API's current session you can send a GET command to 
 https://localhost:5001/api/quote or navigate to that URL in the browser of your choice. 
 <br /> 
@@ -41,6 +43,7 @@ https://localhost:5001/api/premium or navigate to that URL in the browser of you
 If you want to see all the quote JSON payloads sent for the API's current session you can send a GET command to 
 https://localhost:5001/api/quote or navigate to that URL in the browser of your choice. 
 <br /> 
+
 # Next Steps
 1. Instead of having the API run off of local machine memory, 
 i'd like to add an actual database for this API to write to for more permanence, 
