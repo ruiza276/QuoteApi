@@ -35,7 +35,7 @@ namespace QuoteApi.Controllers
 
         [Route("api/quote")]
         [HttpGet("{id}")]
-        public async Task<ActionResult<QuoteItem>> GetQuoteItem(long id)
+        public async Task<ActionResult<QuoteItem>> GetQuoteItem(int id)
         {
             var quoteItem = await _premiumContext.QuoteItems.FindAsync(id);
 
