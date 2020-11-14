@@ -3,9 +3,9 @@
 <br /> This is Web API written in .NET Core 5.0.100. It has a POST endpoint that accepts a JSON payload of:
 ```
 {
-"revenue": [int/double],
-"state": [string],
-"business": [string]
+  "revenue": [int/double],
+  "state": [string],
+  "business": [string]
 }
 ```
 <br /> It then uses a algorithm to calculate a premium based on the values of the payload.
@@ -13,7 +13,7 @@
 And outputs a response JSON payload of:
 ```
 {
-"premium": [int/double]
+  "premium": [int/double]
 }
 ```
 - Please Note: That the Business field only takes one of the following: "Architect", "Plumber" or "Programmer"
