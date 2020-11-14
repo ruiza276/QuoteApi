@@ -5,7 +5,7 @@
 {
 "revenue": [int/double],
 "state": [string],
-"business": [string]'
+"business": [string]
 }
 ```
 <br /> It then uses a algorithm to calculate a premium based on the values of the payload.
