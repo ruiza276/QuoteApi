@@ -50,3 +50,4 @@ i'd like to add an actual database for this API to write to for more permanence,
 using SQL lite.
 2. I'd like to be able to add more States and Business factor via a POST endpoint to create StateFactor Items and BusinessFactor Items to be used in the Premium quote algorithm by storing them in a database.
 3. Implement DELETE, PUT and POST for all data resources.
+4. Implement a logger in the API, I used Nlogger in a previous role and was very handy when it came to debugging
