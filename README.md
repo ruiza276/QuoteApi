@@ -38,8 +38,10 @@ https://localhost:5001/api/quote or navigate to that URL in the browser of your 
 2. Within the publish folder double click on the QuoteApi.exe
 3. From there use a tool like Postman to send a POST JSON payload in the format above to https://localhost:5001/api/premium
 4. Response should be a JSON payload Premium in the format above.
+<br /> 
 If you want to see all the premium JSON payloads POSTED for the API's current session you can send a GET command to 
 https://localhost:5001/api/premium or navigate to that URL in the browser of your choice. This was also implemented for review and testing purposes.
+<br /> 
 If you want to see all the quote JSON payloads sent for the API's current session you can send a GET command to 
 https://localhost:5001/api/quote or navigate to that URL in the browser of your choice. This was also implemented for review and testing purposes.
 <br /> 
